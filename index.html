@@ -398,6 +398,7 @@
             max-width: 90%;
             margin: 20px auto;
             font-size: 1.5rem; /* Base font size for desktop */
+            min-width: 300px; /* Ensure minimum width to display all units */
         }
         .flipdown__unit .flipdown__digit,
         .flipdown__unit .flipdown__label {
@@ -442,8 +443,17 @@
                 font-size: 0.6rem; /* Smaller font size for mobile */
             }
             #flipdown {
-                font-size: 0.9rem; /* Smaller font size for mobile */
-                max-width: 75%; /* Reduce width on mobile */
+                font-size: 0.8rem; /* Smaller font size for mobile */
+                max-width: 70%; /* Reduce width on mobile */
+                min-width: 280px; /* Ensure all units are visible */
+                padding: 5px; /* Add padding for better spacing */
+            }
+            .flipdown__unit {
+                transform: scale(0.9); /* Slightly scale down units for mobile */
+            }
+            .flipdown__digit {
+                width: 30px; /* Reduce digit width for mobile */
+                height: 40px; /* Adjust height for better fit */
             }
         }
         @media (max-width: 480px) {
@@ -454,8 +464,17 @@
                 font-size: 0.5rem; /* Even smaller font size for very small screens */
             }
             #flipdown {
-                font-size: 0.7rem; /* Even smaller font size for very small screens */
-                max-width: 65%; /* Further reduce width on very small screens */
+                font-size: 0.6rem; /* Even smaller font size for very small screens */
+                max-width: 60%; /* Further reduce width on very small screens */
+                min-width: 240px; /* Ensure all units are visible */
+                padding: 3px; /* Adjust padding for smaller screens */
+            }
+            .flipdown__unit {
+                transform: scale(0.85); /* Further scale down units for very small screens */
+            }
+            .flipdown__digit {
+                width: 25px; /* Further reduce digit width */
+                height: 35px; /* Adjust height for better fit */
             }
         }
         /* Certificates Section Styles */
