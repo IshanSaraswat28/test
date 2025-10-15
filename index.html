@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TINK ETHIX | OFFICIAL</title>
+    <link rel="icon" type="image/png" href="public/txlogo_trps.png">
+    <link rel="preload" href="public/txlogo_trps.png" as="image">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flipdown@0.3.2/dist/flipdown.min.css">
+    <meta property="og:image" content="https://media.licdn.com/dms/image/v2/D4E2DAQHoU8SqeSN5nw/profile-treasury-image-shrink_800_800/B4EZcr2ukiHsAY-/0/1748787458853?e=1750665600&v=beta&t=V1PKZvd-n_mDbuNHzbQNozKtHwJZQjOcucTiG8Eh5Y0">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:description" content="TINKETHIX OFFICIAL">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="txatl.sajs.co.in">
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000000;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        /* Preloader Styles */
+        .preloader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .loader {
+            --color: #a5a5b0;
+            --size: 30px;
+            width: var(--size);
+            height: var(--size);
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2px;
+            z-index: 9999;
+            visibility: visible;
+            opacity: 1;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .loader.hidden {
+            visibility: hidden;
+            opacity: 0;
+        }
+        .loader span {
+            width: 100%;
+            height: 100%;
+            background-color: var(--color);
+            animation: keyframes-blink 0.5s alternate infinite linear;
+        }
+        .loader span:nth-child(1) { animation-delay: 0ms; }
+        .loader span:nth-child(2) { animation-delay: 150ms; }
+        .loader span:nth-child(3) { animation-delay: 150ms; }
+        .loader span:nth-child(4) { animation-delay: 280ms; }
+        @keyframes keyframes-blink {
+            0% { opacity: 0.5; transform: scale(0.5) rotate(20deg); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+        body.loading { overflow: hidden; }
+        body.loading .content { display: none; }
+        @media (max-width: 768px) {
+            .loader { --size: 24px; }
+        }
+        /* Navigation and Menu Styles */
+        nav {
+            position: fixed;
+            top: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 50;
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 9999px;
+            padding: 0.75rem 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 90%;
+            max-width: 1200px;
+        }
+        .nav-link {
+            position: relative;
+            display: inline-block;
+            padding: 6px 10px;
+            transition: color 0.3s ease-in-out, transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -2px;
+            width: 0;
+            height: 2px;
+            background: #D1D5DB;
+            transition: width 0.3s ease-in-out, left 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+        .nav-link:hover {
+            color: #D1D5DB;
+            transform: translateY(-2px) scale(1.05);
+            opacity: 1;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+            opacity: 1;
+        }
+        #mobile-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 45%;
+            max-width: 240px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.5s ease-in-out;
+            opacity: 0;
+            z-index: 1001;
+            padding: 15px;
+            box-shadow: -4px 0 12px rgba(0, 0, 0, 0.4);
+            border-left: 1px solid rgba(255, 255, 255, 0.3);
+            overflow-y: auto;
+        }
+        #mobile-menu.open {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        #mobile-menu a {
+            display: flex;
+            align-items: center;
+            padding: 10px 12px;
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            transform: translateX(20px);
+            opacity: 0;
+        }
+        #mobile-menu.open a {
+            animation: slideIn 0.3s ease-out forwards;
+        }
+        @keyframes slideIn {
+            to { transform: translateX(0); opacity: 1; }
+        }
+        #mobile-menu a:hover,
+        #mobile-menu a:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #D1D5DB;
+            padding-left: 20px;
+            transform: scale(1.03);
+        }
+        #mobile-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #D1D5DB;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease-in-out;
+        }
+        #mobile-menu a:hover::after,
+        #mobile-menu a:focus::after {
+            transform: scaleX(1);
+        }
+        #mobile-menu a:active {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: scale(0.98);
+        }
+        .founding-members-btn {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(8px);
+            border: 0.5px solid rgba(255, 255, 255, 0.2);
+            color: #E5E7EB;
+            padding: 6px 10px;
+            font-size: 0.9rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            border-radius: 9999px;
+            width: 85%;
+            max-width: 180px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            position: relative;
+            transform: translateX(20px);
+            opacity: 0;
+        }
+        #mobile-menu.open .founding-members-btn {
+            animation: slideIn 0.3s ease-out forwards;
+            animation-delay: 0.4s;
+        }
+        .founding-members-btn:hover,
+        .founding-members-btn:focus {
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            transform: scale(1.03);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        .founding-members-btn:active {
+            transform: scale(0.98);
+        }
+        #close-menu-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.6rem;
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease-in-out;
+        }
+        #close-menu-btn:hover,
+        #close-menu-btn:focus {
+            color: #D1D5DB;
+            transform: scale(1.1);
+        }
+        #close-menu-btn:active {
+            transform: scale(0.9);
+        }
+        /* Button Styles */
+        .button {
+            margin-top: 20px;
+            height: auto;
+            background: transparent;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            --border-right: 6px;
+            --text-stroke-color: rgba(255, 255, 255, 0.8);
+            --animation-color: #D1D5DB;
+            --fs-size: 1.3em;
+            letter-spacing: 3px;
+            text-decoration: none;
+            font-size: var(--fs-size);
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+            text-transform: uppercase;
+            color: transparent;
+            -webkit-text-stroke: 1px var(--text-stroke-color);
+            transition: transform 0.3s ease-in-out;
+            z-index: 10;
+        }
+        .hover-text {
+            position: absolute;
+            box-sizing: border-box;
+            content: attr(data-text);
+            color: var(--animation-color);
+            width: 0%;
+            inset: 0;
+            border-right: var(--border-right) solid var(--animation-color);
+            overflow: hidden;
+            transition: width 0.5s ease-in-out;
+            -webkit-text-stroke: 1px var(--animation-color);
+        }
+        .button:hover .hover-text {
+            width: 100%;
+            filter: drop-shadow(0 0 23px var(--animation-color));
+        }
+        .button:hover {
+            transform: scale(1.05);
+        }
+        /* Hero Section Styles */
+        .hero-content {
+            animation: fadeInUp 1s ease-out;
+        }
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #00ff88, #5b82ff, #00ff88);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+            animation: gradientMove 4s ease-in-out infinite;
+        }
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        /* Footer Styles */
+        .social-icons a {
+            font-size: 22px;
+            color: #b4b4b4;
+            transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, background 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+        }
+        .social-icons a:hover {
+            transform: scale(1.2);
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+        }
+        .social-icons a.instagram:hover { color: #E4405F; text-shadow: 0 0 12px #E4405F; }
+        .social-icons a.youtube:hover { color: #FF0000; text-shadow: 0 0 12px #FF0000; }
+        .social-icons a.linkedin:hover { color: #0c45ac; text-shadow: 0 0 12px #0c45ac; }
+        .social-icons a.gmail:hover { color: #0c45ac; text-shadow: 0 0 12px #0c45ac; }
+        /* FAB Menu Styles */
+        .btn-shine {
+            display: block;
+            font-weight: 600;
+            font-size: 11px;
+            font-family: "Poppins", sans-serif;
+            color: white;
+            background: linear-gradient(to right, #9f9f9f 0, #fff 10%, #868686 20%);
+            background-size: 200%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s infinite linear;
+            padding: 0 4px;
+            line-height: 1.2;
+            white-space: nowrap;
+            text-align: center;
+            width: 100%;
+        }
+        @keyframes shine {
+            0% { background-position: 0%; }
+            100% { background-position: 200%; }
+        }
+        .child-btn {
+            pointer-events: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            transition-property: transform, background-color, border-color;
+            transition-duration: 300ms;
+            transition-timing-function: ease-out;
+        }
+        .child-btn:hover {
+            background-color: #1a1a1a;
+            border-color: #ffffff70;
+            transform: scale(1.08);
+        }
+        .child-btn.active {
+            pointer-events: auto;
+        }
+        /* Banner Styles */
+        .banner-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 100px;
+            text-align: center;
+            position: relative;
+            z-index: 5;
+        }
+        .banner-img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 20px;
+        }
+        /* Countdown Styles */
+        #flipdown {
+            max-width: 90%;
+            margin: 20px auto;
+            font-size: 1.5rem; /* Base font size for desktop */
+        }
+        .flipdown__unit .flipdown__digit,
+        .flipdown__unit .flipdown__label {
+            color: #fff;
+        }
+        .flipdown__rotor .flipdown__card {
+            background-color: #111;
+        }
+        .flipdown__digit .rotor-top,
+        .flipdown__digit .rotor-bottom {
+            border-top: 2px solid red;
+        }
+        .countdown-labels {
+            display: flex;
+            justify-content: space-between;
+            max-width: 90%;
+            margin: 0 auto 5px;
+            padding: 0 20px;
+        }
+        .countdown-label {
+            flex: 1;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #ffffff;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .banner-container {
+                padding-top: 80px;
+            }
+            .banner-img {
+                max-height: 200px;
+                object-fit: contain;
+            }
+            .countdown-labels {
+                flex-direction: column; /* Stack labels vertically on mobile */
+                gap: 5px; /* Add gap between stacked labels */
+            }
+            .countdown-label {
+                font-size: 0.6rem; /* Smaller font size for mobile */
+            }
+            #flipdown {
+                font-size: 1rem; /* Smaller font size for mobile */
+                max-width: 80%; /* Reduce width on mobile */
+            }
+        }
+        @media (max-width: 480px) {
+            .banner-img {
+                max-height: 150px;
+            }
+            .countdown-label {
+                font-size: 0.5rem; /* Even smaller font size for very small screens */
+            }
+            #flipdown {
+                font-size: 0.8rem; /* Even smaller font size for very small screens */
+                max-width: 70%; /* Further reduce width on very small screens */
+            }
+        }
+        /* Certificates Section Styles */
+        .certificates-section {
+            padding: 80px 10px 60px;
+            position: relative;
+            overflow: visible;
+            background: #000000;
+            z-index: 5;
+            margin-top: 20px;
+        }
+        .container {
+            max-width: min(1200px, 100vw);
+            margin: 0 auto;
+            padding: 0 10px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(200px, 1fr));
+            gap: 15px;
+            justify-content: center;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .certificate-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 12px 8px;
+            text-align: center;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .certificate-card:hover {
+            transform: scale(1.03);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .certificate-img {
+            width: 100%;
+            max-width: 100%;
+            height: 100px;
+            object-fit: contain;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border: 0.5px solid rgba(255, 255, 255, 0.2);
+            transition: border 0.4s ease;
+        }
+        .certificate-card:hover .certificate-img {
+            border: 0.5px solid rgba(255, 255, 255, 0.4);
+        }
+        .certificate-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0 0 8px;
+            color: #fff;
+            transition: color 0.4s ease;
+        }
+        .certificate-card:hover h3 {
+            color: #f5f5f5;
+        }
+        .view-more-btn {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(8px);
+            border: 0.5px solid rgba(255, 255, 255, 0.2);
+            color: #E5E7EB;
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+        .view-more-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            transform: scale(1.03);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            height: calc(100% - 80px);
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .popup-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            text-align: left;
+            color: #fff;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .popup-content h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        .popup-content p {
+            font-size: 0.9rem;
+            color: #e0e0e0;
+            margin-bottom: 15px;
+        }
+        .popup-content ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        .popup-content ul li {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #e0e0e0;
+        }
+        .popup-content h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            color: #f5f5f5;
+        }
+        .close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #ccc;
+            transition: color 0.3s ease;
+        }
+        .close:hover {
+            color: #fff;
+        }
+        .download-btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background: linear-gradient(90deg, #00ff88, #5b82ff);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .download-btn:hover {
+            background: linear-gradient(90deg, #00cc6e, #4a6cd4);
+            transform: scale(1.03);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        @media (max-width: 1024px) {
+            .certificates-grid {
+                grid-template-columns: repeat(3, minmax(180px, 1fr));
+                gap: 12px;
+            }
+        }
+        @media (max-width: 768px) {
+            .certificates-grid {
+                grid-template-columns: repeat(2, minmax(160px, 1fr));
+                gap: 10px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .certificates-section {
+                padding: 60px 8px 40px;
+            }
+            nav {
+                padding: 8px 15px;
+                width: 95%;
+            }
+            .popup {
+                top: 70px;
+                height: calc(100% - 70px);
+            }
+            .popup-content {
+                max-width: 90%;
+                padding: 15px;
+                font-size: 0.85rem;
+            }
+            .popup-content h2 {
+                font-size: 1.3rem;
+            }
+            .popup-content p, .popup-content ul li {
+                font-size: 0.85rem;
+            }
+            .popup-content h3 {
+                font-size: 1.1rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .certificates-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            .certificate-card {
+                min-height: 180px;
+                padding: 10px 6px;
+            }
+            .certificate-img {
+                height: 80px;
+            }
+            .certificate-card h3 {
+                font-size: 0.9rem;
+            }
+            .view-more-btn {
+                padding: 5px 10px;
+                font-size: 0.75rem;
+            }
+            .popup {
+                top: 60px;
+                height: calc(100% - 60px);
+            }
+            .popup-content {
+                width: 95%;
+                padding: 12px;
+                font-size: 0.8rem;
+            }
+            .popup-content h2 {
+                font-size: 1.1rem;
+            }
+            .popup-content p, .popup-content ul li {
+                font-size: 0.8rem;
+            }
+            .popup-content h3 {
+                font-size: 1rem;
+            }
+            .download-btn {
+                padding: 6px 12px;
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-black text-gray-300 loading">
+    <!-- Preloader -->
+    <div class="preloader-container">
+        <div class="loader">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <!-- Main Content Wrapper -->
+    <div class="content">
+        <!-- Navigation Bar -->
+        <nav class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 backdrop-blur-lg bg-white/10 border border-white/20 rounded-full px-8 py-3 shadow-lg flex items-center justify-between w-[90%] md:w-auto">
+            <a href="index.html" class="flex items-center space-x-3 focus:outline-none">
+                <div class="flex items-center space-x-3 p-2 rounded-lg transition-all duration-300 hover:bg-gray-800/30">
+                    <img src="public/txlogo_trps.png" alt="Logo" class="h-8 w-auto">
+                </div>
+            </a>
+            <ul class="hidden md:flex space-x-4 text-gray-300">
+                <li><a href="index.html#about" class="nav-link">About</a></li>
+                <li><a href="index.html#team" class="nav-link">Team</a></li>
+                <li><a href="overview.html" class="nav-link">Lab</a></li>
+                <li class="relative group">
+                    <a href="event.html" class="nav-link inline-block px-4 py-2">Events</a>
+                    <ul class="absolute left-0 mt-1 w-52 backdrop-blur-md bg-white/10 border border-white/20 text-[#b4b4b4] rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                        <li><a href="event.html" class="block px-4 py-2 hover:bg-white/10 rounded-md">Details</a></li>
+                        <li><a href="tinkerfest.html" class="block px-4 py-2 hover:bg-white/10 rounded-md">Tinkerfest</a></li>
+                        <li><a href="compufest.html" class="block px-4 py-2 hover:bg-white/10 rounded-md">Compufest</a></li>
+                        <li><a href="melange.html" class="block px-4 py-2 hover:bg-white/10 rounded-md">Melange</a></li>
+                    </ul>
+                </li>
+                <li class="relative group">
+                    <a href="#" class="nav-link inline-block px-4 py-2">Member</a>
+                    <ul class="absolute left-0 mt-1 w-52 backdrop-blur-md bg-white/10 border border-white/20 text-[#b4b4b4] rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                        <li><a href="beginning.html#22" class="block px-4 py-2 hover:bg-white/10 rounded-md">TX'22</a></li>
+                        <li><a href="beginning.html#23" class="block px-4 py-2 hover:bg-white/10 rounded-md">TX'23</a></li>
+                        <li><a href="beginning.html#24" class="block px-4 py-2 hover:bg-white/10 rounded-md">TX'24</a></li>
+                        <li><a href="beginning.html#25" class="block px-4 py-2 hover:bg-white/10 rounded-md">TX'25</a></li>
+                    </ul>
+                </li>
+                <li><a href="#footer" class="nav-link">Connect</a></li>
+            </ul>
+            <button id="menu-toggle" class="md:hidden text-white focus:outline-none text-lg font-light hover:text-[#D1D5DB] transition-colors">☰</button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="flex flex-col justify-between h-full relative p-4 hidden">
+            <button id="close-menu-btn" class="text-white focus:outline-none">×</button>
+            <div class="flex flex-col items-center space-y-2 mt-8 w-full">
+                <a href="index.html#about" class="block py-2 hover:bg-gray-600 rounded-md w-full text-center">About</a>
+                <a href="index.html#team" class="block py-2 hover:bg-gray-600 rounded-md w-full text-center">Team</a>
+                <a href="overview.html" class="block py-2 hover:bg-gray-600 rounded-md w-full text-center">Lab</a>
+                <a href="event.html" class="block py-2 hover:bg-gray-600 rounded-md w-full text-center">Events</a>
+                <a href="#footer" class="block py-2 hover:bg-gray-600 rounded-md w-full text-center">Connect</a>
+                <a href="tinkerfest.html" class="block py-2 hover:bg-gray-600 rounded-md w-full text-center">Tinkerfest</a>
+                <a href="compufest.html" class="block py-2 hover:bg-gray-600 rounded-md w-full text-center">Compufest</a>
+                <a href="melange.html" class="block py-2 hover:bg-gray-600 rounded-md w-full text-center">Melange</a>
+                <button class="founding-members-btn" onclick="location.href='beginning.html'">Members</button>
+            </div>
+            <div class="flex justify-center pb-4">
+                <img src="public/tinkethix.png" alt="Your Logo" class="w-auto h-auto">
+            </div>
+        </div>
+        <!-- Main Content -->
+        <section id="Fest" class="min-h-screen bg-black pt-24">
+            <div class="banner-container">
+                <img src="melange/MELANGE.png" alt="Melange Banner" class="banner-img">
+                <h3 class="text-center font-semibold text-2xl mt-4 gradient-text">Time Until Melange</h3>
+                <div class="countdown-labels">
+                    <span class="countdown-label"></span>
+                    <span class="countdown-label"></span>
+                    <span class="countdown-label"></span>
+                    <span class="countdown-label"></span>
+                </div>
+                <div id="flipdown" class="flipdown"></div>
+            </div>
+            <section id="events" class="certificates-section">
+                <div class="container">
+                    <h1>Events</h1>
+                    <div class="certificates-grid" id="certificates-grid">
+                        <!-- Card 1 -->
+                        <div class="certificate-card">
+                            <img src="melange/black_bg.jpg" alt="Person 1" class="certificate-img">
+                            <h3>Hackathon</h3>
+                            <button class="view-more-btn" data-event="Hackathon" data-description="Impactathon is a 24-hours (offline) hackathon designed to empower young innovators to think like entrepreneurs of tomorrow. This competition blends the power of technology, creativity and entrepreneurial thinking to encourage participants to create impactful solutions that solve real-world challenges.<br><br><h3>Event Rules</h3><ul><li>Class: Open</li><li>Time limit: 24 hrs.</li><li>No. of Participants: 4 participants + 1 mentor (optional).</li><li>Format: Team-based, collaborative hackathon.</li><li>Time Frame Duration: 24 hours of intensive innovation.</li><li>Deliverables: A well-structured Business Plan, A Prototype/Mockup of the solution, A Pitch Presentation delivered to the judging panel.</li></ul><h3>Theme</h3><p>Aligning with SDG Goals in Problem Solving, Participants will explore global issues linked to the 17 UN Sustainable Development Goals and propose innovative, technology-driven business solutions that are practical, impactful and scalable.</p><h3>Surprise Night Event</h3><p>Star Gazing Session: Take a break from your screens and look up at the universe! During the Impactathon, participants will get a one-of-a-kind chance to explore the night sky through a high-end telescope, guided by astronomy experts.</p><h3>Day 2</h3><p>Final Presentation Impactathon (24 hrs. Hackathon)</p>">View More</button>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="certificate-card">
+                            <img src="melange/black_bg.jpg" alt="Person 2" class="certificate-img">
+                            <h3>Drone Racing</h3>
+                            <button class="view-more-btn" data-event="Drone Racing" data-description="Drone Racing: Compete with Heart, Conquer with Skill<br><br>A thrilling competition where teams design, build and pilot drones through challenging tracks. The event tests speed, accuracy and control while promoting innovation, teamwork, fair play and responsible competition. Participants are encouraged to make quick decisions under pressure while showing respect and empathy toward fellow competitors.<br><br><h3>Event Rules</h3><ul><li>Class: Open</li><li>No. of Participants: 2-4</li><li>Time limit: 3 hrs.</li></ul><h3>Drone Operation</h3><p>All drones must be operated in Line of Sight (LOS) mode, even if FPV cameras are used. Only one drone per team is allowed throughout the competition.</p><h3>Drone Specifications</h3><p>Only self-built or custom-assembled drones are allowed. Drones must not exceed the maximum size limit of 500mm.</p><h3>Judging & Decisions</h3><p>Winners will be decided based on lap completion time and penalties. Any disputes will be resolved by the organizers and judges and their decision will be final.</p><h3>Fair Play</h3><p>Damaging the arena, obstacles or other drones will result in disqualification. If a drone sustains irreparable damage, the team cannot replace it with another drone and will be eliminated.</p>">View More</button>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="certificate-card">
+                            <img src="melange/black_bg.jpg" alt="Person 3" class="certificate-img">
+                            <h3>Robo Sumo</h3>
+                            <button class="view-more-btn" data-event="Robo Sumo" data-description="Robo Sumo: Battle of Bots: Compete with Strategy, Respect, and Skill<br><br>Robo Sumo is an exciting and strategic competition where robots face off to push each other out of a circular arena. The event tests design, control, and strategy while emphasizing teamwork, innovation and respectful competition. Participants are encouraged to collaborate effectively, support their teammates and show empathy toward fellow competitors by following fair play rules.<br><br><h3>Event Rules</h3><ul><li>Class: Open</li><li>No. of Participants: 2-4</li><li>Time limit: 3 hrs.</li></ul><h3>Arena</h3><ul><li>Circular arena with 1.5-meter diameter.</li><li>Match starts with both bots placed inside the ring at designated positions.</li></ul><h3>Bot Specifications</h3><ul><li>Bot must fit within a cube of 30cm × 30cm × 30cm at all times. (10% tolerance allowed)</li><li>Maximum weight limit: 5 kg (including battery and motors).</li><li>Onboard power supply must not exceed 12V DC.</li><li>Bots may be controlled either via wired or wireless.</li><li>For wireless bots, two frequency options must be available.</li><li>Grabbing, holding, or adhesive mechanisms are strictly prohibited.</li><li>Fans, suction, or any destructive components are not allowed.</li></ul><h3>Match Rules</h3><ul><li>At a given time only one bot from each team is allowed in the arena.</li><li>The objective is to push the opponent’s bot out of the arena.</li><li>Each successful push earns points.</li></ul>">View More</button>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="certificate-card">
+                            <img src="melange/black_bg.jpg" alt="Person 4" class="certificate-img">
+                            <h3>Inspire.AI</h3>
+                            <button class="view-more-btn" data-event="Inspire.AI" data-description="Inspire.AI: Research Today, Shape Tomorrow<br><br>The AI Research Paper Presentation Competition is an exciting platform for school students to explore, research, and present their ideas on Artificial Intelligence and its impact on the world.<br><br><h3>Event Rules</h3><ul><li>Class: Open</li><li>Time limit: 5–7 minutes for presentation, 2–3 minute Question and Answer session</li><li>No. of Participants: 2</li><li>Topic: AI for a Better Tomorrow</li><li>Participants are required to submit a research paper in PDF format via email to <a href='mailto:inspire_AI@jaipuria.edu.in'>inspire_AI@jaipuria.edu.in</a> by October 27, 2025.</li><li>Word Limit: 1000 to 1500 words (excluding title page, abstract, and references).</li><li>Structure of the Presentation: Title Page, Abstract (150–200 words), Introduction, Methodology, Research and Analysis, Findings/Results, Conclusion and Recommendations, References</li><li>Shortlisted participants will be notified before the competition.</li><li>Presentations must be delivered using a PowerPoint presentation with a maximum of 6–8 slides.</li><li>Plagiarism will result in immediate disqualification.</li></ul><h3>Judgement Criteria</h3><p>Judges will evaluate participants on both the content of the paper and the clarity of their presentation during the Q&A.</p>">View More</button>
+                        </div>
+                        <!-- Card 5 -->
+                        <div class="certificate-card">
+                            <img src="melange/black_bg.jpg" alt="Person 5" class="certificate-img">
+                            <h3>Aero Blast</h3>
+                            <button class="view-more-btn" data-event="Aero Blast" data-description="Aero Blast: The Water Rocket Race – Launch with Care, Soar with Skill<br><br>The Water Rocket Race is a creative and thrilling event where students design rockets powered only by water and air pressure. The competition encourages scientific thinking, design innovation and practical understanding of aerodynamics while fostering teamwork, responsibility and consideration for safety. Participants learn to collaborate effectively, support each other and ensure a safe environment for all.<br><br><h3>Event Rules</h3><ul><li>Class: Open</li><li>No. of Participants: 2-4</li><li>Time limit: 3 hrs.</li></ul><h3>Arena</h3><p>Launches will take place in an open ground under supervision where only participants and judges are allowed.</p><h3>Rocket Specifications</h3><ul><li>The rocket body must be made using a plastic bottle (max 2 liters).</li><li>Maximum length of the assembled rocket: 60 cm.</li><li>Only water and air pressure are allowed as propellants.</li></ul><h3>Match Rules</h3><ul><li>Each team will get two launch attempts.</li><li>Rocket must be launched only with the provided launcher.</li><li>Teams must fill water and set pressure within the given preparation time.</li><li>If the rocket misfires or fails to launch, it will still be counted as an attempt.</li><li>Rockets must be launched safely within the marked area.</li><li>Unsafe launches will lead to disqualification.</li><li>Maximum pressure is allowed between 50 to 70 psi.</li></ul>">View More</button>
+                        </div>
+                        <!-- Card 6 -->
+                        <div class="certificate-card">
+                            <img src="melange/black_bg.jpg" alt="Person 6" class="certificate-img">
+                            <h3>Robo Soccer</h3>
+                            <button class="view-more-btn" data-event="Robo Soccer" data-description="Robo Soccer: Kick, Score, and Fair Play!<br><br>Robo Soccer is an exciting competition where participants design and build robots to play a mini version of soccer. The event tests creativity, control and strategy, while promoting teamwork, problem-solving, fair play, and empathy. Teams are encouraged to support each other, respect opponents, and follow rules responsibly.<br><br><h3>Event Rules</h3><ul><li>Class: Open</li><li>No. of Participants: 2-4</li><li>Time limit: 3 hrs.</li></ul><h3>Match Format</h3><ul><li>Matches are 1 vs 1.</li><li>The team scoring the most goals within the given time wins.</li></ul><h3>Bot Specifications</h3><ul><li>Bot must fit within a cube of 30cm × 30cm × 30cm at all times.</li><li>A 10% tolerance allowed in one dimension or in weight.</li><li>Weight must not exceed 3 kg (including battery and motors).</li><li>Onboard power supply must not exceed 12V DC.</li><li>Bots may be controlled with or without wire.</li><li>For wireless bots, two frequency options must be available.</li><li>Grabbing or holding the ball is not allowed.</li><li>Fans, suction, adhesives, or sticky materials are prohibited.</li></ul><h3>Arena</h3><p>Approximate size: 10 ft × 4 ft.</p><h3>Judgement Criteria</h3><ul><li>The winner will be the team with the highest scores at the end of the match.</li><li>Violation of size, weight, or prohibited mechanism rules will lead to immediate disqualification.</li><li>Event manager decisions will be final and binding.</li></ul>">View More</button>
+                        </div>
+                        <!-- Card 7 -->
+                        <div class="certificate-card">
+                            <img src="melange/black_bg.jpg" alt="Person 7" class="certificate-img">
+                            <h3>Robo Race</h3>
+                            <button class="view-more-btn" data-event="Robo Race" data-description="Robo Race: Where Robots Meet the Challenge<br><br>Robo Race is a thrilling challenge where robots navigate a track filled with turns and obstacles. It tests speed, control, and stability while encouraging teamwork, innovation, and problem-solving skills.<br><br><h3>Event Rules</h3><ul><li>Class: Open</li><li>No. of Participants: 2-4</li><li>Time limit: 3 hrs.</li></ul><h3>Bot Specification</h3><ul><li>Base size must not exceed 30cm × 25cm.</li><li>Bots must not exceed 3 kg.</li><li>A 10% tolerance is allowed in one dimension or in weight.</li><li>Control may be wired or wireless.</li><li>On-board power supply must not exceed 12V DC.</li><li>Participants must carry backup batteries.</li><li>Use of fire, liquid, or sharp objects is prohibited.</li></ul><h3>Track Specification</h3><ul><li>Track width: 50cm – 70cm, with side walls.</li><li>Features: U-turns, wedges, right angles, loops, narrow paths, and obstacles (e.g., speed breakers).</li><li>Time factor, Checkpoints & obstacles crossed, Corrections: 3 allowed; after that, -10 second each.</li><li>Teams may be asked technical questions.</li></ul><h3>Judgement Criteria</h3><p>The final decision will be by event managers.</p>">View More</button>
+                        </div>
+                        <!-- Card 8 -->
+                        <div class="certificate-card">
+                            <img src="melange/black_bg.jpg" alt="Person 8" class="certificate-img">
+                            <h3>Battle of Prompts</h3>
+                            <button class="view-more-btn" data-event="Battle of Prompts" data-description="Battle of Prompts: Craft with Clarity, Create with Care<br><br>Prompt engineering is the art of crafting instructions for AI models to generate desired outputs. This contest challenges participants to design the most effective, creative and robust prompts within given themes.<br><br><h3>Event Rules</h3><ul><li>Class: Open</li><li>Time limit: 2 hrs.</li><li>No. of Participants: 1</li><li>Model Access: Participants will be provided access to [chosen AI model – e.g., ChatGPT, Gemini, Claude, or open-source LLM].</li><li>Rounds: <ul><li>Round 1 – Task Fulfilment (30 mins): Create prompts for a given input (e.g., summarization, structured output).</li><li>Round 2 – Creativity Challenge (30 mins): Design a creative prompt (story, poem, role-play).</li><li>Round 3 – Live Challenge (30 mins): Solve a surprise prompt task under time pressure.</li></ul></li><li>Submission Format: Each participant must submit – Prompt text, Generated output, Brief reasoning (2–3 sentences).</li><li>Restrictions: No harmful, unsafe, or offensive prompts. No plagiarism (original work only). One entry per round.</li><li>Disqualification: Any violation of rules will result in disqualification.</li></ul><h3>Judgement Criteria</h3><p>Winners will be decided based on the quality of prompts as per the following parameters: task fulfilment, clarity, creativity, robustness and safety. Any disputes will be resolved by the organizers and judges, and their decision will be final.</p>">View More</button>
+                        </div>
+                        <!-- Card 9 -->
+                        <div class="certificate-card">
+                            <img src="melange/black_bg.jpg" alt="Person 9" class="certificate-img">
+                            <h3>3D Modelling</h3>
+                            <button class="view-more-btn" data-event="3D Modelling" data-description="Visual Odyssey: Empathy in Action: Designing Innovations 
+for Humankind<br><br><br><br><h3>Event Rules</h3><ul><li>Class: Open</li><li>Time limit: 2 hrs.</li><li>No. of Participants: 1</li><li>Model Access: Participants will be provided access to [chosen AI model – e.g., ChatGPT, Gemini, Claude, or open-source LLM].</li><li>Rounds: <ul><li>Round 1 – Task Fulfilment (30 mins): Create prompts for a given input (e.g., summarization, structured output).</li><li>Round 2 – Creativity Challenge (30 mins): Design a creative prompt (story, poem, role-play).</li><li>Round 3 – Live Challenge (30 mins): Solve a surprise prompt task under time pressure.</li></ul></li><li>Submission Format: Each participant must submit – Prompt text, Generated output, Brief reasoning (2–3 sentences).</li><li>Restrictions: No harmful, unsafe, or offensive prompts. No plagiarism (original work only). One entry per round.</li><li>Disqualification: Any violation of rules will result in disqualification.</li></ul><h3>Judgement Criteria</h3><p>Winners will be decided based on the quality of prompts as per the following parameters: task fulfilment, clarity, creativity, robustness and safety. Any disputes will be resolved by the organizers and judges, and their decision will be final.</p>">View More</button>
+                        </div>
+                        <!-- Card 10 -->
+                        <div class="certificate-card">
+                            <img src="melange/black_bg.jpg" alt="Person 10" class="certificate-img">
+                            <h3>Coding Challenge</h3>
+                            <button class="view-more-btn" data-event="Coding Challenge" data-description="Coding Challenge: Code with Precision, Compete with Passion<br><br>A competitive programming event where participants solve algorithmic problems under time constraints. This challenge tests coding skills, problem-solving abilities, and logical thinking while promoting collaboration and fair play.<br><br><h3>Event Rules</h3><ul><li>Class: Open</li><li>No. of Participants: 1-2</li><li>Time limit: 2 hrs.</li><li>Format: Individual or team-based coding problems.</li><li>Platforms: Participants will use online judges (e.g., HackerRank, Codeforces).</li><li>Deliverables: Working solutions to given problems, submitted within the time limit.</li></ul><h3>Judgement Criteria</h3><p>Winners will be determined based on the number of problems solved, execution time, and code efficiency. Plagiarism or use of unauthorized resources will lead to disqualification.</p>">View More</button>
+                        </div>
+                    </div>
+                    <!-- Popup -->
+<div id="event-popup" class="popup">
+  <div class="popup-content">
+    <span id="close-popup" class="close">&times;</span>
+    <h2 id="popup-title">Melange 2025</h2>
+    <div id="popup-description">
+      Discover all event details and schedules inside our brochure!
+    </div>
+    <a id="download-brochure"
+       href="melange/Melange_2025.pdf"
+       download
+       class="download-btn">
+       Download Brochure
+    </a>
+  </div>
+</div>
+
+            <!-- Footer -->
+            <footer id="footer" class="bg-black text-gray-400 py-4 px-5 font-['Poppins'] text-sm flex flex-col items-center gap-3 text-center">
+                <span class="text-center font-bold">
+                    <strong>Tinkethix © 2025 All rights reserved.</strong> |
+                    <a href="mailto:atl_sajsvg@jaipuria.edu.in" class="text-gray-400 underline font-bold">atl_sajsvg@jaipuria.edu.in</a>
+                </span>
+                <div class="social-icons flex justify-center flex-wrap gap-4">
+                    <a href="https://www.instagram.com/tink.ethix/" target="_blank" rel="noopener noreferrer" class="instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="linkedin">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@atlsajsvasundhara4320" target="_blank" rel="noopener noreferrer" class="youtube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                    <a href="mailto:your.email@gmail.com" class="gmail">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+                </div>
+            </footer>
+            <!-- FAB Menu -->
+            <div class="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-50">
+                <div id="fabContainer" class="relative w-32 h-48">
+                    <a href="beginning.html#25" id="option1" class="child-btn absolute bottom-0 right-0 scale-0 transition-all duration-300 ease-out flex items-center justify-center rounded-lg px-4 py-2 text-xs font-semibold border bg-black" style="width: 80px; height: 32px; z-index: 14;">
+                        <span class="btn-shine">TX'25</span>
+                    </a>
+                    <a href="beginning.html#24" id="option2" class="child-btn absolute bottom-0 right-0 scale-0 transition-all duration-300 ease-out flex items-center justify-center rounded-lg px-4 py-2 text-xs font-semibold border bg-black" style="width: 80px; height: 32px; z-index: 13;">
+                        <span class="btn-shine">TX'24</span>
+                    </a>
+                    <a href="beginning.html#23" id="option3" class="child-btn absolute bottom-0 right-0 scale-0 transition-all duration-300 ease-out flex items-center justify-center rounded-lg px-4 py-2 text-xs font-semibold border bg-black" style="width: 80px; height: 32px; z-index: 12;">
+                        <span class="btn-shine">TX'23</span>
+                    </a>
+                    <a href="beginning.html#22" id="option4" class="child-btn absolute bottom-0 right-0 scale-0 transition-all duration-300 ease-out flex items-center justify-center rounded-lg px-4 py-2 text-xs font-semibold border bg-black" style="width: 80px; height: 32px; z-index: 11;">
+                        <span class="btn-shine">TX'22</span>
+                    </a>
+                    <button id="mainBtn" class="absolute w-20 h-10 rounded-lg bg-black shadow-lg border hover:scale-110 transition-all duration-300 ease-in-out flex items-center justify-center z-20 bottom-0 right-0">
+                        <span class="btn-shine text-xs whitespace-nowrap">Members</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/flipdown@0.3.2/dist/flipdown.min.js"></script>
+    <script>
+        // Preloader Script
+        window.addEventListener('load', () => {
+            const loader = document.querySelector('.preloader-container');
+            const body = document.body;
+            const content = document.querySelector('.content');
+            const minimumLoaderTime = 1500;
+            const startTime = performance.now();
+            const hidePreloader = () => {
+                const elapsedTime = performance.now() - startTime;
+                const remainingTime = minimumLoaderTime - elapsedTime;
+                setTimeout(() => {
+                    loader.classList.add('hidden');
+                    body.classList.remove('loading');
+                    content.style.display = 'block';
+                }, Math.max(0, remainingTime));
+            };
+            hidePreloader();
+        });
+        // Mobile Menu Script
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const closeMenu = () => {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('open');
+        };
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('open');
+        });
+        closeMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeMenu();
+        });
+        mobileMenu.querySelectorAll('a, .founding-members-btn').forEach((element, index) => {
+            element.style.animationDelay = `${index * 0.1}s`;
+            element.addEventListener('click', closeMenu);
+        });
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target) && mobileMenu.classList.contains('open')) {
+                closeMenu();
+            }
+        });
+        // FAB Menu Script
+        const buttonPositions = [
+            { id: 'option1', x: 0, y: 40 },
+            { id: 'option2', x: 0, y: 80 },
+            { id: 'option3', x: 0, y: 120 },
+            { id: 'option4', x: 0, y: 160 }
+        ];
+        let isMenuOpen = false;
+        let timeoutId = null;
+        function toggleMenu(show) {
+            isMenuOpen = show;
+            buttonPositions.forEach((pos, index) => {
+                const btn = document.getElementById(pos.id);
+                if (show) {
+                    btn.style.transitionDelay = `${index * 50}ms`;
+                    btn.classList.add('active');
+                    btn.classList.remove('scale-0');
+                    btn.style.transform = `translate(${pos.x}px, -${pos.y}px) scale(1)`;
+                } else {
+                    btn.style.transitionDelay = `${(buttonPositions.length - index - 1) * 50}ms`;
+                    btn.classList.remove('active');
+                    btn.classList.add('scale-0');
+                    btn.style.transform = `translate(0, 0) scale(0)`;
+                }
+            });
+        }
+        const fabContainer = document.getElementById('fabContainer');
+        const childButtons = document.querySelectorAll('.child-btn');
+        fabContainer.addEventListener('mouseenter', () => {
+            clearTimeout(timeoutId);
+            toggleMenu(true);
+        });
+        fabContainer.addEventListener('mouseleave', () => {
+            timeoutId = setTimeout(() => toggleMenu(false), 800);
+        });
+        childButtons.forEach(btn => {
+            btn.addEventListener('mouseenter', () => clearTimeout(timeoutId));
+            btn.addEventListener('mouseleave', () => {
+                timeoutId = setTimeout(() => toggleMenu(false), 800);
+            });
+        });
+        toggleMenu(false);
+        // Popup Script
+        document.addEventListener('DOMContentLoaded', () => {
+            const viewMoreButtons = document.querySelectorAll('.view-more-btn');
+            const popup = document.getElementById('event-popup');
+            const popupTitle = document.getElementById('popup-title');
+            const popupDescription = document.getElementById('popup-description');
+            const downloadBrochure = document.getElementById('download-brochure');
+            const closePopup = document.getElementById('close-popup');
+            viewMoreButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const eventName = button.getAttribute('data-event');
+                    const eventDescription = button.getAttribute('data-description');
+                    popupTitle.textContent = eventName;
+                    popupDescription.innerHTML = eventDescription;
+                    downloadBrochure.setAttribute('href', `brochures/${eventName.toLowerCase().replace(/\s/g, '-')}-brochure.pdf`);
+                    popup.style.display = 'flex';
+                });
+            });
+            closePopup.addEventListener('click', () => {
+                popup.style.display = 'none';
+            });
+            popup.addEventListener('click', (e) => {
+                if (e.target === popup) {
+                    popup.style.display = 'none';
+                }
+            });
+            // FlipDown Countdown
+            // Set target date to November 7, 2025, 00:00:00 IST (adjust as needed)
+            const targetDate = new Date('November 7, 2025 00:00:00 GMT+0530').getTime() / 1000;
+            const flipdown = new FlipDown(targetDate, 'flipdown', { theme: 'dark' })
+                .start()
+                .ifEnded(() => {
+                    document.getElementById('flipdown').innerHTML =
+                        `<h2 style="color: red; text-align: center;">Event Started!</h2>`;
+                });
+        });
+    </script>
+</body>
+</html>
