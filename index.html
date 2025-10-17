@@ -376,8 +376,7 @@
         /* Banner Styles */
         .banner-container {
             width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
+            margin: 0;
             padding-top: 100px;
             text-align: center;
             position: relative;
@@ -385,13 +384,19 @@
         }
         .banner-img {
             width: 100%;
-            max-width: 100%;
             height: auto;
-            object-fit: contain;
-            border-radius: 16px;
+            object-fit: cover;
+            border-radius: 0;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.2);
             margin-bottom: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+        }
+        .banner-img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+            opacity: 0.9;
         }
         /* Countdown Styles */
         #flipdown {
@@ -429,19 +434,21 @@
         }
         .countdown-labels {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             max-width: 95%;
             margin: 5px auto 0;
             padding: 0 10px;
+            gap: 16px; /* Adjusted for better spacing */
         }
         .countdown-label {
-            flex: 1;
+            flex: 0 0 auto;
             font-size: 0.9rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: #ffffff;
             text-align: center;
+            min-width: 60px; /* Align with flipdown units */
         }
         @media (max-width: 768px) {
             .banner-container {
@@ -449,7 +456,7 @@
             }
             .banner-img {
                 max-height: 200px;
-                object-fit: contain;
+                object-fit: cover;
             }
             .countdown-labels {
                 max-width: 90%;
@@ -458,6 +465,7 @@
             }
             .countdown-label {
                 font-size: 0.75rem; /* Slightly smaller for mobile */
+                min-width: 50px; /* Align with mobile flipdown units */
             }
             #flipdown {
                 font-size: 1rem;
@@ -485,6 +493,7 @@
             }
             .countdown-label {
                 font-size: 0.7rem;
+                min-width: 45px;
             }
             #flipdown {
                 font-size: 0.9rem;
@@ -508,6 +517,7 @@
             }
             .countdown-label {
                 font-size: 0.65rem;
+                min-width: 40px;
             }
             #flipdown {
                 font-size: 0.8rem;
@@ -853,26 +863,20 @@
                 <img src="public/tinkethix.png" alt="Your Logo" class="w-auto h-auto">
             </div>
         </div>
-       <!-- Main Content -->
-<section id="Fest" class="min-h-screen bg-black pt-24">
-    <div class="banner-container">
-        <img src="melange/MELANGE.png" alt="Melange Banner" class="banner-img">
-        <div class="flex justify-center gap-4 mt-6">
-            <a href="melange/Melange_2025.pdf" download class="button" data-text="Download Brochure">
-                <span class="hover-text" data-text="Download Brochure">Download Brochure</span>
-            </a>
-            <a href="https://linktr.ee/tinkethix" target="_blank" rel="noopener noreferrer" class="button" data-text="Link Tree">
-                <span class="hover-text" data-text="Link Tree">Link Tree</span>
-            </a>
-        </div>
-    </div>                <h3 class="text-center font-semibold text-2xl mt-4 gradient-text">Time Until Melange</h3>
-                <div class="countdown-labels">
-                    <span class="countdown-label">Days</span>
-                    <span class="countdown-label">Hours</span>
-                    <span class="countdown-label">Minutes</span>
-                    <span class="countdown-label">Seconds</span>
-                </div>
+        <!-- Main Content -->
+        <section id="Fest" class="min-h-screen bg-black pt-24">
+            <div class="banner-container">
+                <a href="https://www.instagram.com/tink.ethix?igsh=MWZmbWg1NHI3Zzl1Ng==" target="_blank" rel="noopener noreferrer">
+                    <img src="melange/MELANGE.png" alt="Melange Banner" class="banner-img">
+                </a>
+                <h3 class="text-center font-semibold text-2xl mt-4 gradient-text">Time Until Melange</h3>
                 <div id="flipdown" class="flipdown"></div>
+                <div class="countdown-labels">
+                    <span class="countdown-label">Daysㅤㅤ</span>
+                    <span class="countdown-label">ㅤㅤㅤHours</span>
+                    <span class="countdown-label">ㅤㅤㅤㅤMinutes</span>
+                    <span class="countdown-label">ㅤㅤㅤㅤSeconds</span>
+                </div>
             </div>
             <section id="events" class="certificates-section">
                 <div class="container">
@@ -899,8 +903,8 @@
                         <!-- Card 4 -->
                         <div class="certificate-card">
                             <img src="melange/black_bg.jpg" alt="Person 4" class="certificate-img">
-                            <h3>Inspire.AI</h3>
-                            <button class="view-more-btn" data-event="Inspire.AI" data-description="Inspire.AI: Research Today, Shape Tomorrow<br><br>The AI Research Paper Presentation Competition is an exciting platform for school students to explore, research, and present their ideas on Artificial Intelligence and its impact on the world.<br><br><h3>Event Rules</h3><ul><li>Class: Open</li><li>Time limit: 5–7 minutes for presentation, 2–3 minute Question and Answer session</li><li>No. of Participants: 2</li><li>Topic: AI for a Better Tomorrow</li><li>Participants are required to submit a research paper in PDF format via email to <a href='mailto:inspire_AI@jaipuria.edu.in'>inspire_AI@jaipuria.edu.in</a> by October 27, 2025.</li><li>Word Limit: 1000 to 1500 words (excluding title page, abstract, and references).</li><li>Structure of the Presentation: Title Page, Abstract (150–200 words), Introduction, Methodology, Research and Analysis, Findings/Results, Conclusion and Recommendations, References</li><li>Shortlisted participants will be notified before the competition.</li><li>Presentations must be delivered using a PowerPoint presentation with a maximum of 6–8 slides.</li><li>Plagiarism will result in immediate disqualification.</li></ul><h3>Judgement Criteria</h3><p>Judges will evaluate participants on both the content of the paper and the clarity of their presentation during the Q&A.</p>">View More</button>
+                            <h3>Machine Minds</h3>
+                            <button class="view-more-btn" data-event="Machine Minds" data-description="Machine Minds: Innovating with AI and Mathematics using Teachable Machine<br><br>A competition where teams use Google Teachable Machine to create and train AI models for math-related tasks, fostering creativity, technical skills, and mathematical understanding.<br><br><h3>Event Rules</h3><ul><li>Class Level: IX-X</li><li>No. of Participants: 2 per team</li><li>Time Limit: 1 hour (30 minutes for creating the AI model, 15 minutes for testing, 5 minutes for presentation)</li><li>Topic: On the Spot (math-integrated tasks, e.g., shapes, number recognition, geometry, patterns, fractions)</li><li>Platform/Tool: Google Teachable Machine (image/audio/pose recognition – no coding needed)</li></ul><h3>Event Flow</h3><ol><li><strong>Model Creation:</strong> Teams will be given a math-related theme on the spot (examples: Recognizing geometric shapes, classifying numbers as prime/composite, identifying fractions/decimals, detecting math symbols, recognizing hand gestures for operations). They will use Teachable Machine to create and train an AI model with images, sounds, or poses to represent mathematical concepts.</li><li><strong>Model Training & Testing:</strong> Teams train their AI model with real-life samples (drawn figures, hand gestures, math flashcards, spoken numbers, etc.) & need to check accuracy and refine their dataset.</li><li><strong>Presentation:</strong> Each team explains: How they trained the model, What math concept it demonstrates, How AI can assist in learning/solving math, Live demonstration of the model.</li></ol>">View More</button>
                         </div>
                         <!-- Card 5 -->
                         <div class="certificate-card">
